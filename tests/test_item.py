@@ -14,5 +14,26 @@ def test_calculate_total_price(laptop):
 
 def test_apply_discount(laptop):
     laptop.pay_rate = 0.8
-    if laptop.apply_discount() != None:
-        assert laptop.apply_discount() == 8000.0
+    laptop.apply_discount()
+    assert laptop.price == 8000.0
+
+
+def test_name(laptop):
+    laptop.name = 'Смартфон'
+    assert laptop.name == 'Смартфон'
+    laptop.name = 'СуперСмартфон'
+    assert laptop.name == 'СуперСмарт'
+
+
+def test_instantiate_from_csv(laptop):
+    laptop.instantiate_from_csv('')
+    assert len(laptop.all) == 5
+
+
+def test_string_to_number(laptop):
+    assert laptop.string_to_number('5') == 5
+    assert laptop.string_to_number('5.0') == 5
+    assert laptop.string_to_number('5.5') == 5
+
+
+
