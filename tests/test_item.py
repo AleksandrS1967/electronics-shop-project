@@ -26,7 +26,7 @@ def test_name(laptop):
 
 
 def test_instantiate_from_csv(laptop):
-    laptop.instantiate_from_csv('')
+    laptop.instantiate_from_csv('src/items.csv')
     assert len(laptop.all) == 5
 
 

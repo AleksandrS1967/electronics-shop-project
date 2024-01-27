@@ -43,22 +43,21 @@ class Item:
         Класс-метод, инициализирующий экземпляры класса `Item`
         данными из файла _src/items.csv_
         """
-        if path == 'д':
-            p = 'src/items.csv'
-        else:
-            p = f'../{path}'
-        with open(p, newline='') as csvfile:
+        with open(path, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             cls.all = []
             for row in reader:
-                Item(row['name'], int(row['price']), int(row['quantity']))
+                Item(row['name'], cls.string_to_number(float(row['price'])), cls.string_to_number(row['quantity']))
 
     @staticmethod
     def string_to_number(str_):
         """
         Статический метод, возвращающий число из числа-строки
         """
-        return int(float(str_[0]))
+        if isinstance(str_, float):
+            return float(str_)
+        else:
+            return int(float(str_))
 
     def calculate_total_price(self) -> float:
         """
@@ -73,3 +72,4 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.pay_rate
+
