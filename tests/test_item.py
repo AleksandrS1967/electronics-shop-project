@@ -5,7 +5,7 @@ from src.item import Item
 
 @pytest.fixture()
 def laptop():
-    return Item("laptop", 10000, 20)
+    return Item("Телефон", 10000, 20)
 
 
 def test_calculate_total_price(laptop):
@@ -35,5 +35,14 @@ def test_string_to_number(laptop):
     assert laptop.string_to_number('5.0') == 5
     assert laptop.string_to_number('5.5') == 5
 
+
+def test_repr(laptop):
+    laptop.name = 'Смартфон'
+    assert repr(laptop) == "Item('Смартфон', 10000, 20)"
+
+
+def test_str():
+    laptop.name = 'Смартфон'
+    assert str(laptop.name) == 'Смартфон'
 
 
