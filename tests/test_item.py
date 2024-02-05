@@ -1,6 +1,10 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
+from src.phone import Phone
+
+item1 = Item("Смартфон", 10000, 20)
+phone1 = Phone("iPhone 14", 120000, 5, 2)
 
 
 @pytest.fixture()
@@ -44,5 +48,11 @@ def test_repr(laptop):
 def test_str():
     laptop.name = 'Смартфон'
     assert str(laptop.name) == 'Смартфон'
+
+
+def test_add():
+    assert item1 + phone1 == 25
+    assert phone1 + phone1 == 10
+    assert item1 + 10 == 'TypeError'
 
 

@@ -80,3 +80,8 @@ class Item:
     def __str__(self):
         return f'{self.name}'
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        return 'TypeError'
+
