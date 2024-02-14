@@ -2,6 +2,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+from src.item import InstantiateCSVError
 
 item1 = Item("Смартфон", 10000, 20)
 phone1 = Phone("iPhone 14", 120000, 5, 2)
@@ -32,6 +33,10 @@ def test_name(laptop):
 def test_instantiate_from_csv(laptop):
     laptop.instantiate_from_csv('src/items.csv')
     assert len(laptop.all) == 5
+    with pytest.raises(InstantiateCSVError, match='Файл item.csv поврежден'):
+        laptop.instantiate_from_csv('src/items.csv')
+    with pytest.raises(FileNotFoundError, match='Отсутствует файл item.csv'):
+        laptop.instantiate_from_csv('src/ite.csv')
 
 
 def test_string_to_number(laptop):
